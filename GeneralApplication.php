@@ -3,13 +3,14 @@ namespace ocproject3;
 
 abstract class GeneralApplication
 {
-    protected $requestHTTP, $responseHTTP, $name;
+    protected $requestHTTP, $responseHTTP, $name, $user;
 
     public function __construct()
     {
-        $this->requestHTTP=new RequestHTTP;
-        $this->responseHTTP=new ResponseHTTP;
+        $this->requestHTTP=new RequestHTTP($this);
+        $this->responseHTTP=new ResponseHTTP($this);
         $this->name='';
+        $this->user=new User($this);
     }
 
     abstract public function run();
@@ -61,7 +62,7 @@ abstract class GeneralApplication
             }
         }
 
-        //ajout des vars dans le tableau de $_GET (???)
+        //vars variables added in the GET supervariable $_GET (???)
         $_GET=array_merge($_GET, $pathFound->pathVarsArray());
 
         $selectedController='Application\\'.$this->name.'\\Modules\\'.$pathFound->module().'\\'.$pathFound->module().'Controller';
