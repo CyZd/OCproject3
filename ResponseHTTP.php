@@ -26,7 +26,11 @@ class ResponseHTTP
 
     public function redirect404()
     {
-        exit;
+        $this->page=new Page($this->app);
+        $this->page->setContentFile(__DIR__.'/../../Errors/404.html');
+        $this->setHeader('HTTP/1.0 404 Not found');
+
+        $this->sendPage();
     }
 
     public function setCookie($name, $value, $expireTime, $path, $domain)

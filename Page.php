@@ -18,14 +18,13 @@ class Page extends ApplicationComponent
     {
         if (!file_exists($this->contentFile))
         {
-            throw new RunTImeException('No such view available')
+            throw new RunTimeException('No such view available')
         }
 
         extract($this->variables);
 
         ob_start();
             require $this->contentFile;
-            //yes, we are going to send a full page content through a variable because we want to do things stupidly.
             $content=ob_get_clean();
 
         ob_start();
