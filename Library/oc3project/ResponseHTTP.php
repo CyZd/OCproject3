@@ -10,12 +10,9 @@ class ResponseHTTP
         $this->page = $page;
     }
 
-    public function sendPage(Page $page)
+    public function sendPage()
     {
-        if (isset($this->page))
-        {
-            die($this->page->buildPage());
-        }
+        exit($this->page->getGeneratedPage());
     }
 
     public function redirect($location)

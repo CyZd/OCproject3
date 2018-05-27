@@ -30,6 +30,7 @@ class Pathfinder
                     if($key !== 0)
                     {
                         $variablesList[$variables[$key-1]]=$value;
+                        
                     }
                 }
 

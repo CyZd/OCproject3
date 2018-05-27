@@ -21,6 +21,8 @@ class Page extends ApplicationComponent
             throw new RunTimeException('No such view available')
         }
 
+        $user=$this->app->user();
+
         extract($this->variables);
 
         ob_start();
