@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf8"?>
-<paths>
-    <path url="/book.html" module="book" action="index"></path>
-    <path url="/book-(.+)-([0-9]+)\.html" module="book" action="section" vars="id"></path>
-</paths>
