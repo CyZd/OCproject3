@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <!-- <script src='/../lib/vendors/TinyMCE/tinymce/js/tinymce/tinymce.min.js'></script>
+    <script type="text/javascript"></script> -->
     <title>
       <?= isset($title) ? $title : 'Bienvenue sur le site' ?>
     </title>
@@ -13,6 +16,23 @@
   <body>
     <div id="wrap">
       <header>
+        <script>
+        tinymce.init({
+          selector:'textarea',
+          branding:false,
+          elementpath:false,
+          menubar:false,
+          resize: 'both',
+          toolbar:'undo redo | formatselect | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | indent outdent | insert',
+          insert_button_items: 'image link',
+          images_upload_url: '/../lib/vendors/Model/imageValidator.php',
+          images_upload_base_path: '/Uploaded',
+          images_upload_credentials: true
+        })
+        tinymce.activeEditor.uploadImages(function(success){
+          document.forms[0].submit();
+        })
+        </script>
         <h1><a href="/">Blog TP_appli, bienvenue</a></h1>
         <p>Catégories:</p>
       </header>
@@ -28,6 +48,7 @@
           <li><a href="/admin/">Admin</a></li>
           <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
           <li><a href="/admin/jobs-insert.html">Ajouter une offre d'emploi</a></li>
+          <li><a href="/admin/disconnect.html">Déconnexion</a></li>
           <?php } ?>
         </ul>
       </nav>

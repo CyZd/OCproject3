@@ -33,7 +33,7 @@ class User
     $_SESSION[$attr] = $value;
   }
 
-  public function setAuthenticated($authenticated = true)
+  public function setAuthenticated($authenticated)
   {
     if (!is_bool($authenticated))
     {
