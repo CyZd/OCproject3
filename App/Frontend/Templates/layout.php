@@ -23,6 +23,7 @@
           elementpath:false,
           menubar:false,
           resize: 'both',
+          plugins:'image',
           toolbar:'undo redo | formatselect | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | indent outdent | insert',
           insert_button_items: 'image link',
           images_upload_url: '/../lib/vendors/Model/imageValidator.php',
@@ -40,12 +41,14 @@
       <nav>
         <ul>
           <li><a href="/">Accueil</a></li>
+          <li><a href="/jobs/">Job board</a></li>
           <?php if (!$user->isAuthenticated()) { ?>
           <li><a href="/admin/">Connexion</a></li>
           <?php } ?>
           <?php if ($user->isAuthenticated()) { ?>
           <li><a href="/admin/">Admin</a></li>
           <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
+          <li><a href="/admin/jobs-insert.html">Ajouter une offre d'emploi</a></li>
           <li><a href="/admin/disconnect.html">Déconnexion</a></li>
           <?php } ?>
         </ul>
