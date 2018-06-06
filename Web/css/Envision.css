@@ -409,3 +409,5 @@ footer a {
 
 .middle { vertical-align: middle; }
 
+.mce-notification { display:none !important; }
+.mce-close {display:none !important; }

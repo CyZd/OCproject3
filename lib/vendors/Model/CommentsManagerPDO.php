@@ -7,12 +7,12 @@ class CommentsManagerPDO extends CommentsManager
 {
   protected function add(Comment $comment)
   {
-    $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, date = NOW()');
+    $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, report= 0, date = NOW()');
     
     $q->bindValue(':news', $comment->news(), \PDO::PARAM_INT);
     $q->bindValue(':auteur', $comment->auteur());
     $q->bindValue(':contenu', $comment->contenu());
-    
+
     $q->execute();
     
     $comment->setId($this->dao->lastInsertId());
@@ -35,7 +35,7 @@ class CommentsManagerPDO extends CommentsManager
       throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
     }
     
-    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date FROM comments WHERE news = :news');
+    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date, report FROM comments WHERE news = :news');
     $q->bindValue(':news', $news, \PDO::PARAM_INT);
     $q->execute();
     
@@ -51,15 +51,47 @@ class CommentsManagerPDO extends CommentsManager
     return $comments;
   }
 
+
   protected function modify(Comment $comment)
   {
-    $q = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu WHERE id = :id');
+    $q = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu, report=2 WHERE id = :id');
     
     $q->bindValue(':auteur', $comment->auteur());
     $q->bindValue(':contenu', $comment->contenu());
     $q->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
     
     $q->execute();
+  }
+
+  public function report(Comment $comment)
+  {
+    $q = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu, report=1 WHERE id = :id');
+    
+    $q->bindValue(':auteur', $comment->auteur());
+    $q->bindValue(':contenu', $comment->contenu());
+    $q->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
+    
+    $q->execute();
+  }
+
+  public function getCommentList()
+  {
+    $q = 'SELECT id, auteur, contenu, report FROM comments WHERE report= 1';
+    
+    $request = $this->dao->query($q);
+    $request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+    
+    $commentList = $request->fetchAll();
+    
+    // foreach ($commentList as $n)
+    // {
+    //   $news->setDateAjout(new \DateTime($news->dateAjout()));
+    //   $news->setDateModif(new \DateTime($news->dateModif()));
+    // }
+    
+    $request->closeCursor();
+    
+    return $commentList;
   }
   
   public function get($id)

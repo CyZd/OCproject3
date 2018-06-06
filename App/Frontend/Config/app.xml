@@ -2,6 +2,4 @@
 <definitions>
   <define var="nombre_news" value="5" />
   <define var="nombre_caracteres" value="200" />
-  <define var="nombre_jobs" value="5"/>
-  <define var="nombre_caracteres_jobs" value="80"/>
 </definitions>

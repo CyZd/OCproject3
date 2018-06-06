@@ -7,11 +7,12 @@ class NewsManagerPDO extends NewsManager
 {
   protected function add(News $news)
   {
-    $requete = $this->dao->prepare('INSERT INTO news SET auteur = :auteur, titre = :titre, contenu = :contenu, dateAjout = NOW(), dateModif = NOW()');
+    $requete = $this->dao->prepare('INSERT INTO news SET auteur = :auteur, titre = :titre, chapitre = :chapitre, contenu = :contenu, dateAjout = NOW(), dateModif = NOW()');
     
     $requete->bindValue(':titre', $news->titre());
     $requete->bindValue(':auteur', $news->auteur());
     $requete->bindValue(':contenu', $news->contenu());
+    $requete->bindValue(':chapitre', $news->chapitre());
     
     $requete->execute();
   }
@@ -28,7 +29,7 @@ class NewsManagerPDO extends NewsManager
 
   public function getList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news ORDER BY id DESC';
+    $sql = 'SELECT id, auteur, titre, contenu, chapitre, dateAjout, dateModif FROM news ORDER BY id DESC';
     
     if ($debut != -1 || $limite != -1)
     {
@@ -53,7 +54,7 @@ class NewsManagerPDO extends NewsManager
   
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, auteur, titre, chapitre, contenu, dateAjout, dateModif FROM news WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
@@ -72,10 +73,11 @@ class NewsManagerPDO extends NewsManager
 
   protected function modify(News $news)
   {
-    $requete = $this->dao->prepare('UPDATE news SET auteur = :auteur, titre = :titre, contenu = :contenu, dateModif = NOW() WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE news SET auteur = :auteur, titre = :titre, chapitre=:chapitre,contenu = :contenu, dateModif = NOW() WHERE id = :id');
     
     $requete->bindValue(':titre', $news->titre());
     $requete->bindValue(':auteur', $news->auteur());
+    $requete->bindValue(':chapitre', $news->chapitre());
     $requete->bindValue(':contenu', $news->contenu());
     $requete->bindValue(':id', $news->id(), \PDO::PARAM_INT);
     

@@ -36,7 +36,7 @@ abstract class CommentsManager extends Manager
   {
     if ($comment->isValid())
     {
-      $comment->isNew() ? $this->add($comment) : $this->modify($comment);
+      $comment->isNew()? $this->add($comment) : $this->modify($comment);
     }
     else
     {
@@ -57,6 +57,11 @@ abstract class CommentsManager extends Manager
    * @return void
    */
   abstract protected function modify(Comment $comment);
+
+  abstract public function report(Comment $comment);
+
+  abstract public function getCommentList();
+
   
   /**
    * Méthode permettant d'obtenir un commentaire spécifique.

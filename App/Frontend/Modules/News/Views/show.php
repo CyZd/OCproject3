@@ -1,5 +1,6 @@
 <p>Par <em><?= $news['auteur'] ?></em>, le <?= $news['dateAjout']->format('d/m/Y à H\hi') ?></p>
 <h2><?= $news['titre'] ?></h2>
+<h4>Chapitre <?= $news['chapitre'] ?></h4>
 <p><?= nl2br($news['contenu']) ?></p>
 
 <?php if ($news['dateAjout'] != $news['dateModif']) { ?>
@@ -28,6 +29,17 @@ foreach ($comments as $comment)
     <?php } ?>
   </legend>
   <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
+  <legend>
+  <?php if ($comment['report'] == 0) { ?>
+      <a href="signaler-<?= $comment['id'] ?>.html">Signaler ce commentaire</a>
+    <?php } 
+        else if ($comment['report'] == 1) {?>
+      <p>Ce commentaire est en cours de modération.</p>
+    <?php } 
+       else if ($comment['report'] == 2) {?>
+        <p>Ce commentaire a été vérifié par l'administrateur.</p>
+    <?php }?> 
+  </legend>
 </fieldset>
 <?php
 }

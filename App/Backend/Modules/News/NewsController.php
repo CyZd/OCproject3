@@ -1,4 +1,5 @@
 <?php
+<?php
 namespace App\Backend\Modules\News;
 
 use \OCFram\BackController;
@@ -42,6 +43,17 @@ class NewsController extends BackController
     $this->page->addVar('nombreNews', $manager->count());
   }
 
+  public function executeGetCommentList(HTTPRequest $request)
+  {
+    $this->page->addVar('title', 'Liste des commentaire à modérer');
+
+    $manager=$this->managers->getManagerOf('Comments');
+
+    $commentList=$manager->getCommentList();
+
+    $this->page->addVar('commentList',$commentList);
+  }
+
   public function executeInsert(HTTPRequest $request)
   {
     $this->processForm($request);
@@ -65,7 +77,8 @@ class NewsController extends BackController
       $comment = new Comment([
         'id' => $request->getData('id'),
         'auteur' => $request->postData('auteur'),
-        'contenu' => $request->postData('contenu')
+        'contenu' => $request->postData('contenu'),
+        'report' => $request->postData('report'),
       ]);
     }
     else
@@ -97,9 +110,10 @@ class NewsController extends BackController
       $news = new News([
         'auteur' => $request->postData('auteur'),
         'titre' => $request->postData('titre'),
+        'chapitre' => $request->postData('chapitre'),
         'contenu' => $request->postData('contenu')
       ]);
-
+      
       if ($request->getExists('id'))
       {
         $news->setId($request->getData('id'));
@@ -117,7 +131,7 @@ class NewsController extends BackController
         $news = new News;
       }
     }
-
+    
     $formBuilder = new NewsFormBuilder($news);
     $formBuilder->build();
 

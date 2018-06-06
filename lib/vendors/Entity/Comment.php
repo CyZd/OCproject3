@@ -8,7 +8,8 @@ class Comment extends Entity
   protected $news,
             $auteur,
             $contenu,
-            $date;
+            $date,
+            $report;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
@@ -48,6 +49,14 @@ class Comment extends Entity
     $this->date = $date;
   }
 
+  public function setReport($value)
+  {
+    if ($value >=0 && $value <=2)
+    {
+        $this->report=$value;
+    }
+  }
+
   public function news()
   {
     return $this->news;
@@ -66,5 +75,10 @@ class Comment extends Entity
   public function date()
   {
     return $this->date;
+  }
+
+  public function report()
+  {
+    return $this->report;
   }
 }

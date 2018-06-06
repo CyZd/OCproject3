@@ -3,6 +3,7 @@ namespace FormBuilder;
 
 use \OCFram\FormBuilder;
 use \OCFram\StringField;
+use \OCFram\HidField;
 use \OCFram\TextField;
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
@@ -27,6 +28,14 @@ class CommentFormBuilder extends FormBuilder
         'cols' => 50,
         'validators' => [
           new NotNullValidator('Merci de spécifier votre commentaire'),
+        ],
+       ]))
+       ->add(new HidField([
+        'label' => '',
+        'name' => 'report',
+        'maxLength' => 1,
+        'validators' => [
+          new MaxLengthValidator('L\'auteur spécifié est trop long (1 caractères maximum)', 1),
         ],
        ]));
   }

@@ -9,11 +9,13 @@ class News extends Entity
             $titre,
             $contenu,
             $dateAjout,
-            $dateModif;
+            $dateModif,
+            $chapitre;
 
   const AUTEUR_INVALIDE = 1;
   const TITRE_INVALIDE = 2;
   const CONTENU_INVALIDE = 3;
+  const CHAPITRE_INVALIDE = 4;
 
   public function isValid()
   {
@@ -41,6 +43,16 @@ class News extends Entity
     }
 
     $this->titre = $titre;
+  }
+
+  public function setChapitre($chapitre)
+  {
+    if (empty($chapitre))
+    {
+      $this->erreurs[] = self::CHAPITRE_INVALIDE;
+    }
+
+    $this->chapitre = $chapitre;
   }
 
   public function setContenu($contenu)
@@ -73,6 +85,11 @@ class News extends Entity
   public function titre()
   {
     return $this->titre;
+  }
+
+  public function chapitre()
+  {
+    return $this->chapitre;
   }
 
   public function contenu()

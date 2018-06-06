@@ -59,7 +59,8 @@ class NewsController extends BackController
       $comment = new Comment([
         'news' => $request->getData('news'),
         'auteur' => $request->postData('auteur'),
-        'contenu' => $request->postData('contenu')
+        'contenu' => $request->postData('contenu'),
+        'report' => 0
       ]);
     }
     else
@@ -72,7 +73,7 @@ class NewsController extends BackController
 
     $form = $formBuilder->form();
 
-    $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
+    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
 
     if ($formHandler->process())
     {
@@ -85,4 +86,21 @@ class NewsController extends BackController
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
   }
+
+  public function executeReport(HTTPRequest $request)
+  {
+    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+
+    
+    if ($comment->isValid())
+    {
+      $this->managers->getManagerOf('Comments')->report($comment);
+
+      $this->app->user()->setFlash('Le commentaire a bien été signalé');
+
+      $this->app->httpResponse()->redirect('/news-'.$comment->news().'.html');
+    }
+    
+  }
+
 }
