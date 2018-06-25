@@ -8,6 +8,7 @@ abstract class BackController extends ApplicationComponent
   protected $page = null;
   protected $view = '';
   protected $managers = null;
+  protected $uploader=null;
 
   public function __construct(Application $app, $module, $action)
   {
@@ -15,6 +16,7 @@ abstract class BackController extends ApplicationComponent
 
     $this->managers = new Managers('PDO', PDOFactory::getMysqlConnexion());
     $this->page = new Page($app);
+    $this->uploader= new Uploader;
 
     $this->setModule($module);
     $this->setAction($action);
@@ -67,6 +69,6 @@ abstract class BackController extends ApplicationComponent
 
     $this->view = $view;
 
-    $this->page->setContentFile(__DIR__.'/../../App/'.$this->app->name().'/Modules/'.$this->module.'/Views/'.$this->view.'.php');
+    $this->page->setContentFile(dirname(dirname(__DIR__)).'/src/App/'.$this->app->name().'/Modules/'.$this->module.'/Views/'.$this->view.'.php');
   }
 }

@@ -13,7 +13,7 @@ abstract class Application
   {
     $this->httpRequest = new HTTPRequest($this);
     $this->httpResponse = new HTTPResponse($this);
-    $this->user = new User($this);
+    $this->user = new User();
     $this->config = new Config($this);
 
     $this->name = '';
@@ -24,7 +24,7 @@ abstract class Application
     $router = new Router;
 
     $xml = new \DOMDocument;
-    $xml->load(__DIR__.'/../../App/'.$this->name.'/Config/routes.xml');
+    $xml->load(__DIR__.'/../../src/App/'.$this->name.'/Config/routes.xml');
 
     $routes = $xml->getElementsByTagName('route');
 

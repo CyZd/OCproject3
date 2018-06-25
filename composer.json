@@ -1,0 +1,20 @@
+{
+    "name": "OCproject3",
+    "type": "project",
+    "authors": [
+        {
+            "name":"S Duval",
+            "email":"myemail@myemail.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OCFram\\": "lib/OCFram",
+            "App\\": "src/App",
+            "Model\\": "src/Model",
+            "Entity\\": "src/Entity",
+            "FormBuilder\\": "src/FormBuilder"
+        }
+    },
+    "require":{}
+}

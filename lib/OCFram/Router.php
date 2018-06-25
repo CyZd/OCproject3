@@ -36,11 +36,11 @@ class Router
             if ($key !== 0)
             {
               $listVars[$varsNames[$key-1]] = $match;
-              //var_dump ($varsValues);
+              
             }
 
           }
-          var_dump($varsNames);
+
 
           // On assigne ce tableau de variables � la route
           $route->setVars($listVars);

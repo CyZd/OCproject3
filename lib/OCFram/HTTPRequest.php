@@ -25,7 +25,6 @@ class HTTPRequest extends ApplicationComponent
 
   public function method()
   {
-    
     return $_SERVER['REQUEST_METHOD'];
   }
 
@@ -42,5 +41,17 @@ class HTTPRequest extends ApplicationComponent
   public function requestURI()
   {
     return $_SERVER['REQUEST_URI'];
+  }
+
+  public function fileWasUploaded()
+  {
+    if(empty($_FILES))
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
 }
