@@ -12,7 +12,7 @@
 * ======================================================= */
 body {
   font-weight: 300;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 2;
   font-family: "Roboto", Arial, sans-serif;
   color: #666666;
@@ -53,12 +53,12 @@ a {
     text-decoration: none; }
 
 p {
-  margin-bottom: 20px; }
+  margin-bottom: 0px; }
 
 h1, h2, h3, h4, h5, h6, figure {
   color: #000;
   font-weight: 400;
-  margin: 0 0 20px 0; }
+  margin: 20px 20px 20px 0px; }
 
 ::-webkit-selection {
   color: #fff;
@@ -72,12 +72,20 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
   background: #F6490D; }
 
+.navimage{
+  height: 50%;
+  width: 100%;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
 @media screen and (max-width: 768px) {
   .colorlib-nav {
     margin: 0; } }
 
 .colorlib-nav .top-menu {
-  padding: 25px 0; }
+  padding: 25px 0;
+  margin-left: 10%; }
 
 .colorlib-nav #colorlib-logo {
   font-size: 24px;
@@ -89,10 +97,15 @@ h1, h2, h3, h4, h5, h6, figure {
   .colorlib-nav #colorlib-logo a {
     position: relative;
     color: #000; }
+  .colorlib-nav #colorlib-logo h1 {
+    position: relative;
+    color: #f6490d; }
+
 
 @media screen and (max-width: 768px) {
   .colorlib-nav .menu-1 {
     display: none; } }
+
 
 .colorlib-nav ul {
   padding: 0;
@@ -357,7 +370,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #colorlib-contact,
 #colorlib-footer {
   padding: 7em 0;
-  clear: both; }
+  clear: both}
   @media screen and (max-width: 768px) {
     #colorlib-container,
     #colorlib-instagram,
@@ -951,7 +964,8 @@ input[type="text"] {
       border: 1px solid #F6490D; }
 
 #colorlib-footer {
-  background: #212125; }
+  background: #212125; 
+  text-align: center !important;}
   #colorlib-footer .colorlib-footer-links {
     padding: 0;
     margin: 0; }
