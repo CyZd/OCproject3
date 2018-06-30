@@ -10,10 +10,12 @@ class Uploader
         if (!empty($_FILES))
         {
             $fileName=rand().$_FILES['imgPath']['name'];
-            $destination=dirname(dirname(__DIR__)).'\Uploaded\\'.$fileName;
+            //$destination=__DIR__.'\..\..\Web\Uploaded\\'.$fileName;
+            $destination=dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Web'.DIRECTORY_SEPARATOR.'Uploaded'.DIRECTORY_SEPARATOR.$fileName;
             move_uploaded_file($_FILES['imgPath']['tmp_name'],$destination);
 
-            return $destination;
+
+            return (DIRECTORY_SEPARATOR.'Uploaded'.DIRECTORY_SEPARATOR.$fileName);
         }
     }
 

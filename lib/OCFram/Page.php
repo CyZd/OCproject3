@@ -20,6 +20,7 @@ class Page extends ApplicationComponent
   {
     if (!file_exists($this->contentFile))
     {
+      
       throw new \RuntimeException('La vue spécifiée n\'existe pas');
     }
 
@@ -32,7 +33,7 @@ class Page extends ApplicationComponent
     $content = ob_get_clean();
 
     ob_start();
-      require __DIR__.'/../../src/App/'.$this->app->name().'/Templates/layout.php';
+      require dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'App'.DIRECTORY_SEPARATOR.$this->app->name().DIRECTORY_SEPARATOR.'Templates'.DIRECTORY_SEPARATOR.'layout.php';
     return ob_get_clean();
   }
 

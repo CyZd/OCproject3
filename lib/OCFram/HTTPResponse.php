@@ -19,7 +19,7 @@ class HTTPResponse extends ApplicationComponent
   public function redirect404()
   {
     $this->page = new Page($this->app);
-    $this->page->setContentFile(__DIR__.'/../../Errors/404.html');
+    $this->page->setContentFile(dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Errors'.DIRECTORY_SEPARATOR.'404.html');
     
     $this->addHeader('HTTP/1.0 404 Not Found');
     
@@ -28,9 +28,6 @@ class HTTPResponse extends ApplicationComponent
   
   public function send()
   {
-    // Actuellement, cette ligne a peu de sens dans votre esprit.
-    // Promis, vous saurez vraiment ce qu'elle fait d'ici la fin du chapitre
-    // (bien que je suis sûr que les noms choisis sont assez explicites !).
     exit($this->page->getGeneratedPage());
   }
 
