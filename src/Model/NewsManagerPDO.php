@@ -58,6 +58,7 @@ class NewsManagerPDO extends NewsManager
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
+    //$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, DIRECTORY_SEPARATOR.'Entity'.DIRECTORY_SEPARATOR.'News');
     $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
     
     if ($news = $requete->fetch())
@@ -97,7 +98,7 @@ class NewsManagerPDO extends NewsManager
     }
     else
     {
-      $imageDir=dirname(dirname(__DIR__)).'/Uploaded/';
+      $imageDir=dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Web'.DIRECTORY_SEPARATOR.'Uploaded'.DIRECTORY_SEPARATOR;
       $fileName=basename($checkImage[0]);
       $accessDir=opendir($imageDir);
       $toErase=(string)$imageDir.(string)$fileName;

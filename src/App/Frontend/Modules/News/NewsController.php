@@ -98,7 +98,7 @@ class NewsController extends BackController
 
       $this->app->user()->setFlash('Le commentaire a bien été signalé');
 
-      $this->app->httpResponse()->redirect('/news-'.$comment->news().'.html');
+      $this->app->httpResponse()->redirect(DIRECTORY_SEPARATOR.'news-'.$comment->news().'.html');
     }
     
   }

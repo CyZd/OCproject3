@@ -1,9 +1,9 @@
 RewriteEngine On
 
-RewriteRule ^admin/ bootstrap.php?app=Backend [QSA,L]
+RewriteRule ^admin/ index.php?app=Backend [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 
-RewriteRule ^(.*)$ bootstrap.php?app=Frontend [QSA,L]
+RewriteRule ^(.*)$ index.php?app=Frontend [QSA,L]
 
 RewriteCond %{REQUEST_URI} !^/(tiny_mce|jbimages)/ [NC]

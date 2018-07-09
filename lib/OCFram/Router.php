@@ -22,17 +22,16 @@ class Router
       // Si la route correspond à l'URL
       if (($varsValues = $route->match($url)) !== false)
       {
-        // Si elle a des variables
+        // Si cette route a des variables
         if ($route->hasVars())
         {
           $varsNames = $route->varsNames();
           $listVars = [];
 
           // On crée un nouveau tableau clé/valeur
-          // (clé = nom de la variable, valeur = sa valeur)
           foreach ($varsValues as $key => $match)
           {
-            // La première valeur contient entièrement la chaine capturée (voir la doc sur preg_match)
+            // On garde la première valeur 
             if ($key !== 0)
             {
               $listVars[$varsNames[$key-1]] = $match;

@@ -39,7 +39,7 @@ class CommentsManagerPDO extends CommentsManager
     $q->bindValue(':news', $news, \PDO::PARAM_INT);
     $q->execute();
     
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, DIRECTORY_SEPARATOR.'Entity'.DIRECTORY_SEPARATOR.'Comment');
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
     
     $comments = $q->fetchAll();
     
@@ -79,15 +79,10 @@ class CommentsManagerPDO extends CommentsManager
     $q = 'SELECT id, auteur, contenu, report FROM comments WHERE report= 1';
     
     $request = $this->dao->query($q);
-    $request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, DIRECTORY_SEPARATOR.'Entity'.DIRECTORY_SEPARATOR.'Comment');
+    $request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
     
     $commentList = $request->fetchAll();
     
-    // foreach ($commentList as $n)
-    // {
-    //   $news->setDateAjout(new \DateTime($news->dateAjout()));
-    //   $news->setDateModif(new \DateTime($news->dateModif()));
-    // }
     
     $request->closeCursor();
     
@@ -100,7 +95,7 @@ class CommentsManagerPDO extends CommentsManager
     $q->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $q->execute();
     
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, DIRECTORY_SEPARATOR.'Entity'.DIRECTORY_SEPARATOR.'Comment');
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
     
     return $q->fetch();
   }
