@@ -37,7 +37,7 @@ class NewsManagerPDO extends NewsManager
     }
     
     $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, News::class);
     
     $listeNews = $requete->fetchAll();
     
@@ -59,7 +59,7 @@ class NewsManagerPDO extends NewsManager
     $requete->execute();
     
     //$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, DIRECTORY_SEPARATOR.'Entity'.DIRECTORY_SEPARATOR.'News');
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, News::class);
     
     if ($news = $requete->fetch())
     {

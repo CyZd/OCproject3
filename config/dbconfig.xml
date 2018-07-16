@@ -2,4 +2,6 @@
 <config>
     <define var="rootname" value="root"/>
     <define var="password" value="dbpasswordhere"/>
+    <define var="hostname" value="localhost"/>
+    <define var="dbname" value="test"
 </config>

@@ -18,8 +18,8 @@ class PDOFactory
       {
         $dbvars[$element->getAttribute('var')] = $element->getAttribute('value');
       }
-    $host='localhost';
-    $dbname='test';
+    $host=$dbvars['hostname'];
+    $dbname=$dbvars['dbname'];
     $dbRootName=$dbvars['rootname'];
     $dbPassName=$dbvars['password'];
 
