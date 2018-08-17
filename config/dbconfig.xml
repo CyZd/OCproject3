@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <define var="rootname" value="root"/>
-    <define var="password" value="dbpasswordhere"/>
+    <define var="password" value="azerty123"/>
     <define var="hostname" value="localhost"/>
-    <define var="dbname" value="test"
+    <define var="dbname" value="ocproject3_sylvain" />
 </config>

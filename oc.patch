@@ -1,0 +1,54 @@
+diff --git a/Web/index.php b/Web/index.php
+index 3e6b979..a4610de 100644
+--- a/Web/index.php
++++ b/Web/index.php
+@@ -3,7 +3,7 @@
+ require __DIR__. '/../vendor/autoload.php';
+ 
+ 
+-const DEFAULT_APP = 'Frontend';
++const DEFAULT_APP = 'Backend';
+ 
+ // Si l'application n'est pas valide, on va charger l'application par défaut qui se chargera de générer une erreur 404
+ if (!isset($_GET['app']) || !file_exists(__DIR__.'/../src/App/'.$_GET['app'])) $_GET['app'] = DEFAULT_APP;
+diff --git a/config/dbconfig.xml b/config/dbconfig.xml
+index e0b1c45..2d37a70 100644
+--- a/config/dbconfig.xml
++++ b/config/dbconfig.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <config>
+     <define var="rootname" value="root"/>
+-    <define var="password" value="dbpasswordhere"/>
++    <define var="password" value="azerty123"/>
+     <define var="hostname" value="localhost"/>
+-    <define var="dbname" value="test"
++    <define var="dbname" value="ocproject3_sylvain" />
+ </config>
+\ No newline at end of file
+diff --git a/lib/OCFram/Application.php b/lib/OCFram/Application.php
+index c60c63d..fefe04e 100644
+--- a/lib/OCFram/Application.php
++++ b/lib/OCFram/Application.php
+@@ -61,7 +61,7 @@ abstract class Application
+     $_GET = array_merge($_GET, $matchedRoute->vars());
+ 
+     // On instancie le contrôleur.
+-    $controllerClass = 'App'.DIRECTORY_SEPARATOR.$this->name.DIRECTORY_SEPARATOR.'Modules'.DIRECTORY_SEPARATOR.$matchedRoute->module().DIRECTORY_SEPARATOR.$matchedRoute->module().'Controller';
++    $controllerClass = 'App\\'.$this->name.'\\'.'Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
+     return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
+   }
+ 
+diff --git a/lib/OCFram/Managers.php b/lib/OCFram/Managers.php
+index 14d1bbe..37b0f4b 100644
+--- a/lib/OCFram/Managers.php
++++ b/lib/OCFram/Managers.php
+@@ -22,7 +22,7 @@ class Managers
+ 
+     if (!isset($this->managers[$module]))
+     {
+-      $manager = DIRECTORY_SEPARATOR.'Model'.DIRECTORY_SEPARATOR.$module.'Manager'.$this->api;
++      $manager = '\Model\\'.$module.'Manager'.$this->api;
+ 
+       $this->managers[$module] = new $manager($this->dao);
+     }

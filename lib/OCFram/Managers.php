@@ -22,7 +22,7 @@ class Managers
 
     if (!isset($this->managers[$module]))
     {
-      $manager = DIRECTORY_SEPARATOR.'Model'.DIRECTORY_SEPARATOR.$module.'Manager'.$this->api;
+      $manager = '\Model\\'.$module.'Manager'.$this->api;
 
       $this->managers[$module] = new $manager($this->dao);
     }
