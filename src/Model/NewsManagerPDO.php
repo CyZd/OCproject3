@@ -61,6 +61,7 @@ class NewsManagerPDO extends NewsManager
     //$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, DIRECTORY_SEPARATOR.'Entity'.DIRECTORY_SEPARATOR.'News');
     $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, News::class);
     
+    
     if ($news = $requete->fetch())
     {
       $news->setDateAjout(new \DateTime($news->dateAjout()));
@@ -96,19 +97,16 @@ class NewsManagerPDO extends NewsManager
     {
       throw New \RunTimeException('No file found to erase');
     }
-    else
-    {
-      $imageDir=dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'Web'.DIRECTORY_SEPARATOR.'Uploaded'.DIRECTORY_SEPARATOR;
-      $fileName=basename($checkImage[0]);
-      $accessDir=opendir($imageDir);
-      $toErase=(string)$imageDir.(string)$fileName;
-      unlink($toErase);
-      closedir($accessDir);
 
-      $requete = $this->dao->prepare('UPDATE news SET imgPath = :imgPath WHERE id ='.(int) $id);
-      $requete->bindValue(':imgPath',null);
-      $requete->execute();
-    }
+    $imageDir=dirname(dirname(__DIR__)).'\\Web\\Uploaded\\';
+    $fileName=basename($checkImage[0]);
+    $toErase=(string)$imageDir.(string)$fileName;
+    unlink($toErase);
+
+    $requete = $this->dao->prepare('UPDATE news SET imgPath = :imgPath WHERE id ='.(int) $id);
+    $requete->bindValue(':imgPath',null);
+    $requete->execute();
+
 
   }
 

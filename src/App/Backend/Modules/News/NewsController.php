@@ -17,6 +17,7 @@ class NewsController extends BackController
     $newsId = $request->getData('id');
     
     $this->managers->getManagerOf('News')->delete($newsId);
+    $this->managers->getManagerOf('News')->deleteFile($newsId);
     $this->managers->getManagerOf('Comments')->deleteFromNews($newsId);
 
     $this->app->user()->setFlash('La news a bien été supprimée !');

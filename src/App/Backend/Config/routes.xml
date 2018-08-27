@@ -10,4 +10,5 @@
   <route url="/admin/comment-report-([0-9]+)\.html" module="News" action="reportComment" vars="id" />
   <route url="/admin/image-delete-([0-9]+)\.html" module="News" action="deleteImage" vars="id" />
   <route url="/admin/disconnect.html" module="Connexion" action="disconnect"/>
+  <route url="/admin/change-pass.html" module="Connexion" action="changePassword"/>
 </routes>

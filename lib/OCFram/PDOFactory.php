@@ -11,15 +11,15 @@ class PDOFactory
   {
     $dbvars=[];
     $xml = new \DOMDocument;
-    $xml->load(dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'dbconfig.xml');
+    $xml->load(dirname(dirname(__DIR__)).'\\config'.'\\dbconfig.xml');
     $dbvars=[];
     $elements = $xml->getElementsByTagName('define');
     foreach ($elements as $element)
       {
         $dbvars[$element->getAttribute('var')] = $element->getAttribute('value');
       }
-    $host=$dbvars['hostname'];
-    $dbname=$dbvars['dbname'];
+    $host='localhost';
+    $dbname='test';
     $dbRootName=$dbvars['rootname'];
     $dbPassName=$dbvars['password'];
 

@@ -28,4 +28,17 @@ class Config extends ApplicationComponent
     return null;
   }
 
+  public function set($var, $newvalue)
+  {
+      $newvalue=password_hash($newvalue, PASSWORD_DEFAULT);
+
+      $xml = new \DOMDocument;
+      $xml->load(dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'App'.DIRECTORY_SEPARATOR.$this->app->name().DIRECTORY_SEPARATOR.'Config'.DIRECTORY_SEPARATOR.'app.xml');
+
+      $elements = $xml->getElementsByTagName('define');
+
+      $elements->item(1)->nodeValue="";
+      $elements->item(1)->appendChild($xml->createTextNode($newvalue));
+
+  }
 }

@@ -7,6 +7,7 @@
     <title>
       <?= isset($title) ? $title : 'Bienvenue sur le site' ?>
     </title>
+    <link rel='icon' href='/images/icon.png' type='image/png' />
     
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,10 +54,7 @@
 
 	<!-- Modernizr JS -->
 	<script src="/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	
 
   </head>
   
@@ -65,12 +63,13 @@
       <header>
         <script>
         tinymce.init({
-          selector:'textarea',
+          selector: 'textarea',
+          // inline: true,
           branding:false,
-          elementpath:false,
-          menubar:false,
+          elementpath:true,
+          menubar: true,
           resize: 'both',
-          plugins:'image', 'paste',
+          //plugins:'image', 'paste',
           toolbar:'undo redo | formatselect | fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | indent outdent',
           paste_data_images: false,
           
@@ -89,7 +88,6 @@
               <div class="col-xs-10 text-right menu-1">
               <ul>
                 <li><a href="/">Accueil</a></li>
-                <!-- <li><a href="/jobs/">Job board</a></li> -->
                 <?php if (!$user->isAuthenticated()) { ?>
                 <li><a href="/admin/">Connexion</a></li>
                 <?php } ?>
@@ -97,6 +95,7 @@
                 <li><a href="/admin/">Admin</a></li>
                 <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
                 <li><a href="/admin/comment-list.html">Modérer les commentaires</a></li>
+                <li><a href="/admin/change-pass.html">Changer de mot de passe</a></li>
                 <li><a href="/admin/disconnect.html">Déconnexion</a></li>
                 <?php } ?>
               </ul>
